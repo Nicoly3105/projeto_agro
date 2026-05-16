@@ -141,3 +141,4 @@ while True:
          print('~'*38,'CONVERSOR DE FABRICAÇÃO','~'*39)
          print('[1]QUEIJO\n[2]DERIVADOS\n[3]ARTESANAIS')
          escolha = input('Qual produto você deseja fabricar? ')
+         
