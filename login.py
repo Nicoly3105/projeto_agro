@@ -12,24 +12,27 @@ while True:
     op_login = int(input('Digite a opção que deseja para prosseguir: '))
 
     if op_login == 1:
-        login = input('Digite o nome de usúario ou email: ').lower().strip()
-        senha = input('Digite a senha: ').lower().strip()
-        for i in login_cliente :
-            if login == i[0] and senha == i[1]:
-                login_encontrado = True
-                print('Login encontrado com sucesso!')
-                break
-            else:
-                print('Login não encontrado, por favor, tente novamente!')
-        for i in login_adm :
-            if login == i[0] and senha == i[1]:
-                login_encontrado = True
-                print('Login encontrado com sucesso!')
-                break
-                
-            else:
-                print('Login não encontrado, por favor, tente novamente!')
-
+        while True:
+            login = input('Digite o nome de usúario ou email: ').lower().strip()
+            senha = input('Digite a senha: ').lower().strip()
+            for i in login_cliente :
+                if login == i[0] and senha == i[1]:
+                    login_encontrado = True
+                    print('Login encontrado com sucesso!')
+                    break
+                    
+                else:
+                    print('Login não encontrado, por favor, tente novamente!')
+            for i in login_adm :
+                if login == i[0] and senha == i[1]:
+                    login_encontrado = True
+                    print('Login encontrado com sucesso!')
+                    break
+                    
+                else:
+                    print('Login não encontrado, por favor, tente novamente!')
+            break
+        continue
     elif op_login == 2:
         login = input('Digite um nome de usúario ou email que você deseja usar: ').strip().lower()
         print('*a senha precisa ter no mínimo 8 caracteres*\n*a senha precisa ter letras e números*')   
@@ -96,5 +99,6 @@ while True:
     print('~'*100)
     print('~'*46,'MENU ADM','~'*46)
     print('~'*100)
+    break
 
 
