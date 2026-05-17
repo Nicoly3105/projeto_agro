@@ -6,7 +6,7 @@ while True:
     print('~'*45,'MENU ADM','~'*45)
     print('~'*100)
     print('[1]CADASTRAR ANIMAL\n[2]VER ANIMAIS\n[3]ALTERAR OU REMOVER ANIMAL\n[4]CADASTRAR PRODUTO\n[5]VER PRODUTOS\n[6]ALTERAR OU REMOVER PRODUTO\n[7]CONVERSOR DE FABRICAÇÃO\n[8]PRODUÇÃO DIÁRIA\n[9]SAIR')
-    op_adm = int(input('Digite a opção que deseja para prosseguir: ')).strip
+    op_adm = int(input('Digite a opção que deseja para prosseguir: '))
 
     if op_adm == 1:
                 print('~'*40,'CADASTRO DE ANIMAIS','~'*39)
@@ -47,7 +47,7 @@ while True:
             print('~'*44,'CATEGORIAS','~'*44)
             print('~'*100)
             print('[1]QUEIJOS\n[2]LEITE\n[3]DERIVADOS\n[4]PRODUTOS PARA VENDA EM LOTE\n[5]PRODUTOS ARTESANAIS\n[6]VOLTAR')
-            op_categoria = int(input('Digite a opção que deseja para prosseguir: ')).strip
+            op_categoria = int(input('Digite a opção que deseja para prosseguir: '))
             if op_categoria == 1:
                     produto = input('Digite o tipo de queijo que você deseja cadastrar: ')
                     while True:
@@ -150,11 +150,11 @@ while True:
     elif op_adm == 7:
          print('~'*38,'CONVERSOR DE FABRICAÇÃO','~'*39)
          print('[1]QUEIJO\n[2]DERIVADOS\n[3]ARTESANAIS')
-         escolha = input('Qual produto você deseja fabricar? ').strip
+         escolha = input('Qual produto você deseja fabricar? ')
     if escolha == '1':
                 print('~'*100)
                 print('[1]COALHO\n[2]QUEIJO MANTEIGA[3]MUSSARELA\n[4]REQUEIJÃO')
-                decisao = input('Digite a opção de queijo que deseja fabricar: ').strip
+                decisao = input('Digite a opção de queijo que deseja fabricar: ')
                 if decisao == '1':
                     while True:
                         quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
@@ -246,7 +246,7 @@ while True:
     elif escolha == '2':
         print('~'*100)
         print('[1]MANTEIGA COMUM\n[2]CREME DE LEITE[3]IOGURTE\n[4]DOCE DE LEITE\n[5]COALHADA')
-        decisao = input('Digite a opção de queijo que deseja fabricar: ').strip
+        decisao = input('Digite a opção de queijo que deseja fabricar: ')
         if decisao == '1':
                     while True:
                         quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
@@ -360,7 +360,7 @@ while True:
     elif escolha == '3':
         print('~'*100)
         print('[1]MANTEIGA DA TERRA\n[2]QUEIJO DEFUMADO[3]NATA')
-        decisao = input('Digite a opção de queijo que deseja fabricar: ').strip
+        decisao = input('Digite a opção de queijo que deseja fabricar: ')
         if decisao == '1':
                     while True:
                         quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
