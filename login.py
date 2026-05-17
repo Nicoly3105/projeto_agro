@@ -2,7 +2,8 @@
 menu_login = []
 login_cliente = []
 login_adm = []
-login_encontrado = False
+login_encontrado_cliente = False
+login_encontrado_adm = False
 
 while True:
     print('~'*100)
@@ -17,7 +18,7 @@ while True:
             senha = input('Digite a senha: ').lower().strip()
             for i in login_cliente :
                 if login == i[0] and senha == i[1]:
-                    login_encontrado = True
+                    login_encontrado_cliente = True
                     print('Login encontrado com sucesso!')
                     break
                     
@@ -25,7 +26,7 @@ while True:
                     print('Login não encontrado, por favor, tente novamente!')
             for i in login_adm :
                 if login == i[0] and senha == i[1]:
-                    login_encontrado = True
+                    login_encontrado_adm = True
                     print('Login encontrado com sucesso!')
                     break
                     
@@ -95,10 +96,11 @@ while True:
         break
 
 #MENU ADM
-while True:
-    print('~'*100)
-    print('~'*46,'MENU ADM','~'*46)
-    print('~'*100)
-    break
+if login_encontrado_adm == True:
+    while True:
+        print('~'*100)
+        print('~'*46,'MENU ADM','~'*46)
+        print('~'*100)
+        break
 
 

@@ -1,5 +1,6 @@
 animais = [['vaca',37,'femea','gravida',8]]
 produtos = [['coalho',7,'kg',6.5]]
+leite = [1000]
 while True:
     print('~'*100)
     print('~'*45,'MENU ADM','~'*45)
@@ -42,7 +43,7 @@ while True:
         print('~'*100)
         print('~'*44,'CATEGORIAS','~'*44)
         print('~'*100)
-        print('[1]QUEIJOS\n[2]LEITES\n[3]DERIVADOS\n[4]PRODUTOS PARA VENDA EM LOTE\n[5]PRODUTOS ARTESANAIS\n[6]VOLTAR')
+        print('[1]QUEIJOS\n[2]LEITE\n[3]DERIVADOS\n[4]PRODUTOS PARA VENDA EM LOTE\n[5]PRODUTOS ARTESANAIS\n[6]VOLTAR')
         op_categoria = int(input('Digite a opção que deseja para prosseguir: '))
         if op_categoria == 1:
                 produto = input('Digite o tipo de queijo que você deseja cadastrar: ')
@@ -63,15 +64,13 @@ while True:
                         break 
                 produtos.append([produto,peso,unidade,valor])
         elif op_categoria == 2:
-                produto = input('Digite o tipo de leite que você deseja cadastrar: ')
                 while True:
-                    volume = float(input('Digite o volume do produto: '))
+                    volume = float(input('Digite o volume do leite em litros: '))
                     if volume <= 0 :
                         print('Esse volume é inválido para o produto, tente novamente!')
                         continue
                     else:
                           break
-                unidade = input('Qual seria a unidade de medida desse produto? ')
                 while True:
                     valor = float(input('Digite o valor do produto: '))
                     if valor <= 0 :
@@ -79,7 +78,7 @@ while True:
                             continue
                     else:
                         break 
-                produtos.append([produto,volume,unidade,valor])
+                leite.append(volume,valor)
         elif op_categoria == 3:
                 produto = input('Digite o tipo de derivado que você deseja cadastrar: ')
                 while True:
@@ -141,4 +140,18 @@ while True:
          print('~'*38,'CONVERSOR DE FABRICAÇÃO','~'*39)
          print('[1]QUEIJO\n[2]DERIVADOS\n[3]ARTESANAIS')
          escolha = input('Qual produto você deseja fabricar? ')
+         if escolha == '1':
+              print('[1]COALHO\n[2]MANTEIGA\n[3]MUSSARELA\n[4]RICOTA\n[5]REQUEIJÃO')
+              qual_queijo = input('Qual queijo você deseja fabricar? ')
+              if qual_queijo == '1':
+                    while True:
+                        quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+
+                        if quantidade_producao <=0:
+                             print('Quantidade inexistente! Tente novamente.')
+                             continue
+                        else:
+                             break
+                    calculo = leite[0]//100
+                        
          
