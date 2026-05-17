@@ -1,19 +1,19 @@
 compras = []
 encomendas = []
-produtos = []
+produtos = [['Leite',5,'litros',8.0]]
 
 while True:
     print('~' * 100)
     print('~' *43,'MENU CLIENTE', '~' *43)
     print('~' * 100)
-
     print('[1] VER PRODUTOS')
     print('[2] COMPRAR PRODUTOS')
     print('[3] ENCOMENDAR PRODUTOS')
     print('[4] VER ENCOMENDAS')
     print('[5] HISTÓRICOS DE COMPRAS')
     print('[6] BENEFÍCIOS DO CLIENTE')
-    print('[7] VOLTAR')
+    print('[7] FORMAS DE PAGAMENTO')
+    print('[8] VOLTAR')
 
     op_cliente = int(input('Digite a opção desejada: '))
 
@@ -22,27 +22,43 @@ while True:
             print('Nenhum produto cadastrado!')
 
         else:
-            print('~' *35,'LISTA DE PRODUTOS', '~' *35)
-            for produto, quantidade in produtos:
+            print('~'*100)
+            print('~' *41,'LISTA DE PRODUTOS', '~' *40)
+            print('~'*100)
+            for produto, quantidade, unidade, valor in produtos:
                 print(f'Produto: {produto}')
-                print(f'Quantidade: {quantidade}')
+                print(f'Quantidade: {quantidade} {unidade}')
+                print(f'Valor: {valor}')
                 print('-' * 30)
 
-    # COMPRAR PRODUTOS
     elif op_cliente == 2:
-        print('~' *35,'COMPRAR PRODUTOS', '~' *35)
+        print('~'*100)
+        print('~' *41,'COMPRAR PRODUTOS', '~' *41)
+        print('~'*100)
         produto = input('Digite o produto que deseja comprar: ')
         quantidade = int(input('Digite a quantidade desejada: '))
+        unidade = input('Digite a unidade (kg/litros/unidades): ')
+        valor = float(input('Digite o valor do produto: '))
 
-        produtos.append([produto, quantidade])
-        compras.append([produto, quantidade])
-
+        valor_total = quantidade * valor 
+        if len(compras) >= 3:
+            desconto = valor_total * 0.10
+            valor_final = valor_total - desconto 
+            print(f'Desconto aplicado:{desconto}')
+            print(f'Valor final com desconto:{valor_final}')
+        else:
+            valor_final = valor_total
+            print(f'Valor total:{valor_final}')
+        
+        compras.append([produto, quantidade,unidade,valor])
+        
         print('Compra realizada com sucesso!')
 
 
-    # ENCOMENDAR PRODUTOS
     elif op_cliente == 3:
-        print('~' *35,'ENCOMENDAR PRODUTOS', '~' *35)
+        print('~'*100)
+        print('~' *40,'ENCOMENDAR PRODUTOS', '~' *39)
+        print('~'*100)
         produto = input('Digite o produto que deseja encomendar: ')
         quantidade = int(input('Digite a quantidade desejada: '))
         data = input('Digite a data desejada: ')
@@ -52,14 +68,15 @@ while True:
 
         print('Encomenda realizada com sucesso!')
 
-    # VER ENCOMENDAS
     elif op_cliente == 4:
 
         if len(encomendas) == 0:
             print('Nenhuma encomenda realizada!')
 
         else:
-            print('~' *35,'LISTA DE ENCOMENDAS', '~' *35)
+            print('~'*100)
+            print('~' *40,'LISTA DE ENCOMENDAS', '~' *39)
+            print('~'*100)
 
             for produto, quantidade, data, horario in encomendas:
                 print(f'Produto: {produto}')
@@ -69,20 +86,48 @@ while True:
                 print('-' * 30)
 
     elif op_cliente == 5:
-        print('~'*35,'HISTÓRICOS DE COMPRAS','~'*35)
+        print('~'*100)
+        print('~'*40,'HISTÓRICOS DE COMPRAS','~'*37)
+        print('~'*100)
         if len(compras) == 0:
             print('Nenhuma encomenda realizada!')
         else:
             for i in compras:
                 print(i)
     elif op_cliente == 6:
-        print('~'*35,'BENEFÍCIOS DO CLIENTE','~'*35)
+        print('~'*100)
+        print('~'*40,'BENEFÍCIOS DO CLIENTE','~'*37)
+        print('~'*100)
         if len(compras) >= 3:
             print('Parabéns! Você possui 10% de desconto nas compras.')
+            valor = float(input('Digite o valor da compra para calcular o seu desconto: '))
+            desconto = valor * 0.10
+            valor_final = valor - desconto
+            print(f'Seu desconto será de {desconto}')
+            print(f'Valor final com desconto:{valor_final}')
         else: 
             faltam = 3 - len(compras)
             print(f'Faltam {faltam} compras para liberar os 10% de desconto.')
     elif op_cliente == 7:
-        print('Voltando ao menu inicial...')
+        print('~'*100)
+        print('~'*40,'FORMAS DE PAGAMENTO','~'*39)
+        print('~'*100)
+        print('[1] PIX')
+        print('[2] BOLETO')
+
+        pagamento = input('Escolha a forma de pagamento: ')
+
+        if pagamento == '1':
+            print('Pagamento via PIX selecionado!')
+            print('Chave PIX: fazendasertao@gmail.com')
+        elif pagamento == '2':
+            print('Pagamento via BOLETO selecionado!')
+            print('Boleto gerado com sucesso!')
+        else:
+            print('Opção invalida!')    
+    
+    
+    elif op_cliente == 8:
+        print('Voltar ao menu inicial...')
         break
                    
