@@ -5,7 +5,7 @@ while True:
     print('~'*100)
     print('~'*45,'MENU ADM','~'*45)
     print('~'*100)
-    print('[1]CADASTRAR ANIMAL\n[2]VER ANIMAIS\n[3]CADASTRAR PRODUTO\n[4]VER PRODUTOS\n[5]CONVERSOR DE FABRICAÇÃO\n[6]VOLTAR')
+    print('[1]CADASTRAR ANIMAL\n[2]VER ANIMAIS\n[3]ALTERAR OU REMOVER ANIMAL\n[4]CADASTRAR PRODUTO\n[5]VER PRODUTOS\n[6]ALTERAR OU REMOVER PRODUTO\n[7]CONVERSOR DE FABRICAÇÃO\n[8]PRODUÇÃO DIÁRIA\n[9]SAIR')
     op_adm = int(input('Digite a opção que deseja para prosseguir: ')).strip
 
     if op_adm == 1:
@@ -41,7 +41,7 @@ while True:
             for i in animais:
                 print(i)
 
-    elif op_adm == 3:
+    elif op_adm == 4:
         while True:
             print('~'*100)
             print('~'*44,'CATEGORIAS','~'*44)
@@ -143,11 +143,11 @@ while True:
             elif op_categoria == 6:
                 break
 
-    elif op_adm == 4:
+    elif op_adm == 5:
         for i in produtos:
             print(i)
 
-    elif op_adm == 5:
+    elif op_adm == 7:
          print('~'*38,'CONVERSOR DE FABRICAÇÃO','~'*39)
          print('[1]QUEIJO\n[2]DERIVADOS\n[3]ARTESANAIS')
          escolha = input('Qual produto você deseja fabricar? ').strip
@@ -427,5 +427,19 @@ while True:
                     else:
                          print('Conversão cancelada!')
                          break 
-    elif op_adm == 6:
+    elif op_adm == 8:
+        print('~'*100)
+        print('~'*43,'PRODUÇÃO DIÁRIA','~'*43)
+        while True:
+            producao_diaria = float(input('Digite a quantidade de leite ordenhado do dia: '))
+            if producao_diaria <= 0 :
+                print('Quantidade inexistente! Tente novamente.')
+                continue
+            else:
+                 break
+        leite[0] += producao_diaria
+        valor_diaria = float(input('Digite o valor do leite atualizado: '))
+        leite.append[1](valor_diaria)
+        print('Produção diária cadastrada com sucesso!')
+    elif op_adm == 9:
          break
