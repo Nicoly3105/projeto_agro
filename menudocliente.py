@@ -35,12 +35,20 @@ while True:
         print('~'*100)
         print('~' *41,'COMPRAR PRODUTOS', '~' *41)
         print('~'*100)
-        produto = input('Digite o produto que deseja comprar: ')
-        quantidade = int(input('Digite a quantidade desejada: '))
+        produto = input('Digite o produto que deseja comprar:')
+        for i in produtos:
+            if i[0] == produto:
+                quantidade = int(input('Digite a quantidade desejada: '))
+        if quantidade > i[1]:
+            print('Quantidade indisponivel no estoque!')
+            break
         unidade = input('Digite a unidade (kg/litros/unidades): ')
         valor = float(input('Digite o valor do produto: '))
-
+        if valor != i[3]:
+            print('Valor incorreto!')
+            break
         valor_total = quantidade * valor 
+
         if len(compras) >= 3:
             desconto = valor_total * 0.10
             valor_final = valor_total - desconto 
@@ -50,10 +58,9 @@ while True:
             valor_final = valor_total
             print(f'Valor total:{valor_final}')
         
+        i[1] -= quantidade
         compras.append([produto, quantidade,unidade,valor])
-        
         print('Compra realizada com sucesso!')
-
 
     elif op_cliente == 3:
         print('~'*100)
@@ -100,11 +107,6 @@ while True:
         print('~'*100)
         if len(compras) >= 3:
             print('Parabéns! Você possui 10% de desconto nas compras.')
-            valor = float(input('Digite o valor da compra para calcular o seu desconto: '))
-            desconto = valor * 0.10
-            valor_final = valor - desconto
-            print(f'Seu desconto será de {desconto}')
-            print(f'Valor final com desconto:{valor_final}')
         else: 
             faltam = 3 - len(compras)
             print(f'Faltam {faltam} compras para liberar os 10% de desconto.')
