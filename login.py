@@ -29,6 +29,7 @@ while True:
                     login_encontrado_adm = True
                     print('Login encontrado com sucesso!')
                     break
+
                     
                 else:
                     print('Login não encontrado, por favor, tente novamente!')
