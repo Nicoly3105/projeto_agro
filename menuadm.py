@@ -519,24 +519,27 @@ while True:
         print('~'*42,'PRODUÇÃO DIÁRIA','~'*41)
         print('~'*100)
         print(f'Estoque atual:{leite}')
-        print('~'*100)
-        print('[1]ADICIONAR\n[2]REMOVER')
-        escolha_leite = input('Digite a opção que deseja: ')
-        if escolha_leite == '1':
-            while True:
-                producao_diaria = float(input('Digite a quantidade de leite ordenhado do dia: '))
-                if producao_diaria <= 0 :
-                    print('Quantidade inexistente! Tente novamente.')
-                    continue
-                else:
-                    break
-            leite[0] += producao_diaria
-            valor_diaria = float(input('Digite o valor do leite atualizado: '))
-            leite.append[1](valor_diaria)
-            print(f'Produção diária cadastrada com sucesso!\nEstoque atual: {leite[0]}')
-        elif escolha_leite == '2':
-             leite_remover = float(input('Digite a quantidade de leite que você deseja remover: '))
-             leite[0] -= leite_remover
-             print(f'Quantidade de leite removida com sucesso!\nEstoque atual: {leite[0]}')
+        while True:
+            print('~'*100)
+            print('[1]ADICIONAR\n[2]REMOVER\n[3]SAIR')
+            escolha_leite = input('Digite a opção que deseja: ')
+            if escolha_leite == '1':
+                while True:
+                    producao_diaria = float(input('Digite a quantidade de leite ordenhado do dia: '))
+                    if producao_diaria <= 0 :
+                        print('Quantidade inexistente! Tente novamente.')
+                        continue
+                    else:
+                        break
+                leite[0] += producao_diaria
+                valor_diaria = float(input('Digite o valor do leite atualizado: '))
+                leite.append[1](valor_diaria)
+                print(f'Produção diária cadastrada com sucesso!\nEstoque atual: {leite[0]}')
+            elif escolha_leite == '2':
+                leite_remover = float(input('Digite a quantidade de leite que você deseja remover: '))
+                leite[0] -= leite_remover
+                print(f'Quantidade de leite removida com sucesso!\nEstoque atual: {leite[0]}')
+            elif escolha_leite == '3':
+                break
     elif op_adm == 9:
          break
