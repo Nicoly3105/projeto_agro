@@ -6,7 +6,7 @@ while True:
     print('~'*100)
     print('~'*45,'MENU ADM','~'*45)
     print('~'*100)
-    print('[1]CADASTRAR ANIMAL\n[2]VER ANIMAIS\n[3]ALTERAR OU REMOVER ANIMAL\n[4]CADASTRAR PRODUTO\n[5]VER PRODUTOS\n[6]ALTERAR OU REMOVER PRODUTO\n[7]CONVERSOR DE FABRICAÇÃO\n[8]PRODUÇÃO DIÁRIA\n[9]SAIR')
+    print('[1]CADASTRAR ANIMAL\n[2]VER ANIMAIS\n[3]ALTERAR OU REMOVER ANIMAL\n[4]CADASTRAR PRODUTO\n[5]VER PRODUTOS\n[6]ALTERAR OU REMOVER PRODUTO\n[7]CONVERSOR DE FABRICAÇÃO\n[8]PRODUÇÃO DIÁRIA\n[9]ZERAR REBANHO\n[0]SAIR')
     op_adm = int(input('Digite a opção que deseja para prosseguir: '))
 
     if op_adm == 1:
@@ -542,4 +542,16 @@ while True:
             elif escolha_leite == '3':
                 break
     elif op_adm == 9:
+         soma = 0
+         for i in animais:
+              soma += i[4]
+              print(i)
+              deseja = input('Você realmente deseja zerar o rebanho?\n[S/N]\n ').upper()
+              if deseja == 'S':
+                   animais.clear()
+                   print(f'O valor total de animais retirados foi de {soma}')
+              else:
+                print('Decisão negada!')
+                break
+    elif op_adm == 0:
          break
