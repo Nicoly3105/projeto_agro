@@ -100,6 +100,9 @@ while True:
         break
 
 #MENU ADM
+anijmais = [['Vaca',37,'femea','gravida',8]]
+produtos = [['coalho',7,'kg',6.5]]
+leite = [1000]
 if login_encontrado_adm == True:
     animais = [['Vaca',37,'femea','gravida',8]]
     produtos = [['coalho',7,'kg',6.5]]
