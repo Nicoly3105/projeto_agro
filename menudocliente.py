@@ -1,12 +1,16 @@
+from pybrcode.pix import generate_simple_pix
+
 compras = []
 encomendas = []
-
+produtos = []
+animais = []
+leite = []
 def menu_cliente():
     while True:
         print('~' * 100)
         print('~' *43,'MENU CLIENTE', '~' *43)
         print('~' * 100)
-        print('[1] VER PRODUTOS\n[2] COMPRAR PRODUTOS\n[3] ENCOMENDAR PRODUTOS\n[4] VER ANIMAIS\n[5] COMPRAR ANIMAL\n[6] ENCOMENDAR ANIMAL\n[7] VER ENCOMENDAS\n[8] COMPRAR LEITE\n[9] HISTÓRICOS DE COMPRAS\n[10] BENEFÍCIOS DO CLIENTE\n[11] FORMAS DE PAGAMENTO\n[12] VOLTAR')
+        print('[\033[1;33m1\033[m] VER PRODUTOS\n[\033[1;33m2\033[m] COMPRAR PRODUTOS\n[\033[1;33m3\033[m] ENCOMENDAR PRODUTOS\n[\033[1;33m4\033[m] VER ANIMAIS\n[\033[1;33m5\033[m] COMPRAR ANIMAL\n[\033[1;33m6\033[m] ENCOMENDAR ANIMAL\n[\033[1;33m7\033[m] VER ENCOMENDAS\n[\033[1;33m8\033[m] COMPRAR LEITE\n[\033[1;33m9\033[m] HISTÓRICOS DE COMPRAS\n[\033[1;33m10\033[m] BENEFÍCIOS DO CLIENTE\n[\033[1;33m11\033[m] FORMAS DE PAGAMENTO\n[\033[1;33m12\033[m] VOLTAR')
 
         op_cliente = int(input('Digite a opção desejada: '))
 
@@ -222,10 +226,9 @@ def menu_cliente():
                         print(f"Produto:{compra['produto']}")
                     if 'animal' in compra:
                         print(f"Animal:{compra['animal']}")
-                    print(f"Quantidade:{compra['quantidade']}")
-                    print(f"Valor: R${compra['valor']}")
-
-                        
+                        print(f"Quantidade:{compra['quantidade']}")
+                        print(f"Valor: R${compra['valor']}")
+   
         def beneficios_cliente():
             print('~'*100)
             print('~'*40,'BENEFÍCIOS DO CLIENTE','~'*37)
@@ -241,14 +244,19 @@ def menu_cliente():
             print('~'*100)
             print('~'*40,'FORMAS DE PAGAMENTO','~'*39)
             print('~'*100)
-            print('[1] PIX')
-            print('[2] BOLETO')
-
+            print('[\033[1;33m1\033[m] PIX')
+            print('[\033[1;33m2\033[m] BOLETO')
             pagamento = input('Escolha a forma de pagamento: ')
 
             if pagamento == '1':
                 print('Pagamento via PIX selecionado!')
-                print('Chave PIX: fazendasertao@gmail.com')
+                pix = generate_simple_pix(
+                    recebedor="Fazenda Sertão", 
+                    chave_pix="fazendasertao@gmail.com",
+                    cidade="Cajazeiras",
+                    valor= 87.50 ,
+                    pix_id="PEDIDO001",
+                    descrição="Compra via pix")
             elif pagamento == '2':
                 print('Pagamento via BOLETO selecionado!')
                 print('Boleto gerado com sucesso!')
