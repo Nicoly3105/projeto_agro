@@ -41,7 +41,7 @@ def verificação_login(login,senha):
                 break  
 
 #cadas cliente
-def cadastro_cliente(login,senha, login_cliente):
+def cadastro_cliente(login_cliente):
     while True:
         login = input('Digite o email: ').lower().strip()
         try:
@@ -71,8 +71,11 @@ def cadastro_cliente(login,senha, login_cliente):
                             break
                         else:
                             print('As senhas não coincidem!')
+                else:
+                    print('A senha não contém letras e números!')
+                    break
             break
-cadastro_cliente(login,senha, login_cliente)
+cadastro_cliente(login_cliente)
 # cadas adm
 def cadastro_adm():
     while True:
