@@ -63,7 +63,7 @@ def cadastro_cliente():
                     if i.isdigit():
                         tem_numero = True
                     if tem_letra and tem_numero:
-                        confirmar_senha = maskpass.askpass(prompt='Confirme sua senha: ', mask='\033[1;37*\033[m')
+                        confirmar_senha = maskpass.askpass(prompt='Confirme sua senha: ', mask='\033[1;37m*\033[m')
                         if confirmar_senha == senha:
                             login_cliente.append([login, senha])
                             print('\033[1;34mCadastro realizado com sucesso!\033[m')
@@ -74,7 +74,7 @@ def cadastro_cliente():
                         print('\033[1;31mA senha não contém letras e números!\033[m')
                         continue
                 break
-cadastro_cliente()
+
 # cadas adm
 def cadastro_adm():
     while True:

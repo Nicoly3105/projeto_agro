@@ -1,5 +1,5 @@
 #LOGIN
-import funcoes
+import login_funcoes
 menu_login = []
 login_cliente = []
 login_adm = []
@@ -14,15 +14,15 @@ while True:
     op_login = int(input('Digite a opção que deseja para prosseguir: '))
 
     if op_login == 1:
-        funcoes.verificação_login()
+        login_funcoes.verificação_login()
 
     elif op_login == 2:
-        funcoes.cadastro_cliente()
+        login_funcoes.cadastro_cliente()
             
     elif op_login == 3:
-        funcoes.cadastro_adm()
+        login_funcoes.cadastro_adm()
     elif op_login == 4:
-        print('PROGRAMA ENCERRADO!')
+        print('\033[1;34mPROGRAMA ENCERRADO!\033[m')
         break
 
 #MENU ADM
@@ -641,7 +641,7 @@ if login_encontrado_adm == True:
                 elif escolha_leite == '3':
                     break
         elif op_adm == 9:
-            funcoes.voltando_inicio()
+            login_funcoes.voltando_inicio()
 #menu cliente
 if login_encontrado_cliente == True:
     compras = []
@@ -936,6 +936,6 @@ if login_encontrado_cliente == True:
         
         
         elif op_cliente == 12:
-            funcoes.voltando_inicio()
+            login_funcoes.voltando_inicio()
         else:
             print('Opção indisponível!')

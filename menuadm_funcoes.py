@@ -2,10 +2,8 @@
 animais = {}
 lista_animais = []
 
-
-
 def cadastro_animais():
-    print('\033[1;32m~'*40,'CADASTRO DE ANIMAIS','~\033[m'*39)
+    print('\033[1;32m~'*40,'CADASTRO DE ANIMAIS','~'*39, '\033[m')
     animais['Animal'] = input('Digite o animal que você deseja cadastrar: ').capitalize()
     while True:
         animais['Peso'] = float(input('Digite o peso do animal: '))
