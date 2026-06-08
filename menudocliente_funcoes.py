@@ -1,5 +1,4 @@
-from pybrcode.pix import generate_simple_pix
-
+import qrcode_terminal
 compras = []
 encomendas = []
 produtos = []
@@ -240,30 +239,28 @@ def menu_cliente():
                 faltam = 3 - len(compras)
                 print(f'Faltam {faltam} compras para liberar os 10% de desconto.')
 
-        def formas_pagamento():
-            print('~'*100)
+def formas_pagamento():
+            print('\033[1;32m~'*100)
             print('~'*40,'FORMAS DE PAGAMENTO','~'*39)
             print('~'*100)
-            print('[\033[1;33m1\033[m] PIX')
+            print('\033[m[\033[1;33m1\033[m] PIX')
             print('[\033[1;33m2\033[m] BOLETO')
             pagamento = input('Escolha a forma de pagamento: ')
 
             if pagamento == '1':
-                print('Pagamento via PIX selecionado!')
-                pix = generate_simple_pix(
-                    recebedor="Fazenda Sertão", 
-                    chave_pix="fazendasertao@gmail.com",
-                    cidade="Cajazeiras",
-                    valor= 87.50 ,
-                    pix_id="PEDIDO001",
-                    descrição="Compra via pix")
+                print('\033[1;32m~'*35,'Pagamento via PIX selecionado!','~'*34,'\033[1;33m')
+                if pagamento == '1':
+                    qrcode_terminal.draw('') 
+                    print("\033[1;34m\nPagamento gerado com sucesso!\n\033[m")
+                else:
+                    print('\033[1;31m\nOpção inválida!\n\033[m')
+
             elif pagamento == '2':
                 print('Pagamento via BOLETO selecionado!')
                 print('Boleto gerado com sucesso!')
+
             else:
-                print('Opção invalida!')    
+                print('Opção invalida!') 
+formas_pagamento()
         
-        
-        def voltando_inicio():
-            print('Voltando ao menu inicial...')
                    

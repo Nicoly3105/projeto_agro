@@ -49,7 +49,7 @@ def cadastro_cliente():
         except EmailNotValidError:
             print('\033[1;31mEmail inválido, tente novamente!\033[m')
             continue
-        print('\033[1;31m*a senha precisa ter no mínimo 8 caracteres*\n*a senha precisa ter letras e números*\033[m')   
+        print('\033[1;33m*a senha precisa ter no mínimo 8 caracteres*\n*a senha precisa ter letras e números*\033[m')   
         senha = maskpass.askpass(prompt='Digite a senha que você deseja usar: ', mask='\033[1;37m*\033[m')
         if len(senha) < 8:
                 print('\033[1;31mSenha muito curta, tente novamente!\033[m')
@@ -72,8 +72,9 @@ def cadastro_cliente():
                             print('\033[1;31mAs senhas não coincidem!\033[m')
                 else:
                         print('\033[1;31mA senha não contém letras e números!\033[m')
-                        break
-        break
+                        continue
+                break
+cadastro_cliente()
 # cadas adm
 def cadastro_adm():
     while True:
@@ -83,7 +84,7 @@ def cadastro_adm():
         except EmailNotValidError:
             print('\033[1;31mEmail inválido, tente novamente!\033[m')
             continue
-        print('\033[1;31m*a senha precisa ter no mínimo 8 caracteres*\n*a senha precisa ter letras e números*\033[m')   
+        print('\033[1;33m*a senha precisa ter no mínimo 8 caracteres*\n*a senha precisa ter letras e números*\033[m')   
         senha = maskpass.askpass(prompt='Digite a senha que você deseja usar: ', mask='*')
         if len(senha) < 8:
                 print('\033[1;31mSenha muito curta, tente novamente!\033[m')
@@ -106,8 +107,8 @@ def cadastro_adm():
                             print('\033[1;31mAs senhas não coincidem!\033[m')
                 else:
                         print('\033[1;31mA senha não contém letras e números!\033[m')
-                        break
-        break
+                        continue
+                break
 
 def voltando_inicio():
     print('\033[1;34mVoltando ao menu inicial...\033[m')
