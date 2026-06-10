@@ -1,7 +1,11 @@
 import qrcode_terminal
+from rich.console import Console
+from rich.panel import Panel
+console = Console()
+
 compras = []
 encomendas = []
-produtos = []
+produtos = [{'Produto':'Vaca','Quantidade':56,'Unidade':'kg','Valor':56}]
 animais = []
 leite = []
 
@@ -14,16 +18,16 @@ op_cliente = int(input('Digite a opção desejada: '))
 
 def ver_produtos():
             if len(produtos) == 0:
-                print('Nenhum produto cadastrado!')
+                print('\033[1;31mNenhum produto cadastrado!\033[m')
 
             else:
                 print('\033[1;32m~'*100)
                 print('~' *41,'LISTA DE PRODUTOS', '~' *40)
                 print('~'*100, '\033[m')
-                for produto, quantidade, unidade, valor in produtos:
-                    print(f'\033[1;35mProduto:\033[m {produto}')
-                    print(f'\033[1;35mQuantidade:\033[m {quantidade} {unidade}')
-                    print(f'\033[1;35mValor:\033[m R${valor}')
+                for item in produtos:
+                    print(f'\033[1;35mProduto:\033[m {item['Produto']}')
+                    print(f'\033[1;35mQuantidade:\033[m {item['Quantidade']} {item['Unidade']}')
+                    print(f'\033[1;35mValor:\033[m R${item['Valor']}')
                     print('\033[1;35m~' * 30,'\033[m')
 ver_produtos()
 def comprar_produto():
@@ -34,16 +38,16 @@ def comprar_produto():
             encontrado = False
             for item in produtos:
 
-                if item[0].capitalize() == produto_input:
+                if item['Produto'].capitalize() == produto_input:
                     encontrado = True
                     quantidade_compra = int(input('Digite a quantidade desejada: '))
-                    if quantidade_compra > item[1]:
+                    if quantidade_compra > item['Quantidade']:
                         print('\033[1;31mQuantidade indisponível em estoque!\033[m')
-                        print(f'\033[1;35mEstoque disponível:\033[m {item[1]}{item[2]}')
+                        print(f'\033[1;35mEstoque disponível:\033[m {item['Quantidade']}{item['Unidade']}')
 
                     else:
-                        unidade = item[2]
-                        valor_compra = item[3]
+                        unidade = item['Unidade']
+                        valor_compra = item['Valor']
                         valor_total = quantidade_compra * valor_compra
                         if len(compras) >= 3:
                             desconto = valor_total * 0.10
@@ -53,7 +57,7 @@ def comprar_produto():
                         else:
                          valor_final = valor_total
                          print(f'\033[1;35mValor final:\033[m {valor_final}')
-                         item[1] -= quantidade_compra
+                         item['Quantidade'] -= quantidade_compra
                          compras.append({'Produto':produto_input,'Quantidade':quantidade_compra,'Unidade':unidade,'Valor':valor_final})
                          print('\033[1;34mCompra realizada com sucesso!\033[m')
                     break
@@ -68,11 +72,12 @@ def encomendar_produto():
             produto_input = input('Digite o produto que deseja encomendar: ').capitalize()
             encontrado = False 
             for item in produtos:
-                if item[0].capitalize() == produto_input:
+                if item['Produto'].capitalize() == produto_input:
                     encontrado = True 
                     break
                 else:
                     print('\033[1;31mProduto não encontrado!\033[m')
+                    break
             while True:
                 quantidade = int(input('Digite a quantidade desejada: '))
                 if quantidade <= 0:
@@ -80,7 +85,13 @@ def encomendar_produto():
                     continue
                 else:
                     break
-            data = input('Digite a data desejada:\n(DD/MM/AA)\n ')
+            console.print(
+            Panel(
+            "📅 Digite a data desejada (DD/MM/AAAA)",
+            title="Agendamento"
+                    )
+            )
+            data = input("> ")
             horario = input('Digite o horário desejado: ')
 
             encomendas.append({'Produto':produto_input,'Quantidade':quantidade,'Data':data,'Horário':horario})
@@ -94,14 +105,15 @@ def ver_animais():
                 print('\033[1;32m~'*100)
                 print('~' *40,'LISTA DE ANIMAIS', '~' *40)
                 print('~'*100, '\033[m')
-                for animal, peso, genero, status, valor in animais:
-                    print(f'\033[1;35mAnimal:\033[m {animal}')
-                    print(f'\033[1;35mPeso:\033[m {peso}')
-                    print(f'\033[1;35mGênero:\033[m {genero}')
-                    print(f'\033[1;35mStatus:\033[m {status}')
-                    print(f'\033[1;35mValor:\033[m R${valor}')
+                for item in animais:
+                    print(f'\033[1;35mAnimal:\033[m {item['Animal']}')
+                    print(f'\033[1;35mQuantidade:\033[m {item['Quantidade']}')
+                    print(f'\033[1;35mPeso:\033[m {item['Peso']}')
+                    print(f'\033[1;35mGênero:\033[m {item['Gênero']}')
+                    print(f'\033[1;35mStatus:\033[m {item['Status']}')
+                    print(f'\033[1;35mValor:\033[m R${item['Valor']}')
                     print('\033[1;35m~' * 100,'\033[m')
-ver_animais()
+
 def comprar_animal():
             print('\033[1;32m~'*100)
             print('~' *40,'COMPRAR ANIMAIS', '~' *40)
@@ -110,15 +122,15 @@ def comprar_animal():
             encontrado = False
             for item in animais:
 
-                if item[0].capitalize() == animal_input:
+                if item['Animal'].capitalize() == animal_input:
                     encontrado = True
                     quantidade_animal = int(input('Digite a quantidade desejada: '))
-                    if quantidade_animal > item[1]:
+                    if quantidade_animal > item['Quantidade']:
                         print('\033[1;31mQuantidade indisponível em estoque!\033[m')
-                        print(f'Estoque disponível: {item[1]}')
+                        print(f'Estoque disponível: {item['Quantidade']}')
 
                     else:
-                        valor_animal = item[4]
+                        valor_animal = item['Valor']
                         valor_total = quantidade_animal * valor_animal
                         if len(compras) >= 3:
                             desconto = valor_total * 0.10
@@ -128,13 +140,13 @@ def comprar_animal():
                         else:
                             valor_final = valor_total
                             print(f'\033[1;35mValor final:\033[m {valor_final}')
-                            item[1] -= quantidade_animal
+                            item['Quantidade'] -= quantidade_animal
                             compras.append({'Animal':animal_input,'Quantidade':quantidade_animal,'Valor':valor_final})
                             print('\033[1;34mCompra realizada com sucesso!\033[m')
                     break
             if encontrado == False:
                 print('\033[1;31mAnimal não encontrado!\033[m')
-comprar_animal()
+
 def ver_encomendas_animais():
             print('\033[1;32m~'*100)
             print('~' *40,'ENCOMENDAR ANIMAIS', '~' *39)
@@ -142,7 +154,7 @@ def ver_encomendas_animais():
             animal_input = input('Digite o animal que deseja encomendar: ').capitalize()
             encontrado = False 
             for item in animais:
-                if item[0].capitalize() == animal_input:
+                if item['Animal'].capitalize() == animal_input:
                     encontrado = True 
                     break
                 else:
@@ -155,13 +167,19 @@ def ver_encomendas_animais():
                     continue
                 else:
                     break
-            data = input('Digite a data desejada:\n(DD/MM/AA)\n ')
+            console.print(
+            Panel(
+            "📅 Digite a data desejada (DD/MM/AAAA)",
+            title="Agendamento"
+                    )
+            )
+            data = input("> ")
             horario = input('Digite o horário desejado: ')
 
             encomendas.append({'Animal':animal_input,'Quantidade':quantidade,'Data':data,'Horário':horario})
 
             print('\033[1;34mEncomenda realizada com sucesso!\033[m')
-ver_encomendas_animais()
+
 def ver_encomendas():
 
             if len(encomendas) == 0:
@@ -173,30 +191,30 @@ def ver_encomendas():
                 print('~'*100, '\033[m')
 
                 for encomenda in encomendas:
-                    if 'produto' in encomenda:
-                        print(f"\033[1;35mProduto:\033[m {encomenda['produto']}")
-                        print(f"\033[1;35mQuantidade:\033[m {encomenda['quantidade']}")
-                        print(f"\033[1;35mData:\033[m {encomenda['data']}")
-                        print(f"\033[1;35mHorário:\033[m {encomenda['horário']}")
+                    if 'Produto' in encomenda:
+                        print(f"\033[1;35mProduto:\033[m {encomenda['Produto']}")
+                        print(f"\033[1;35mQuantidade:\033[m {encomenda['Quantidade']}")
+                        print(f"\033[1;35mData:\033[m {encomenda['Data']}")
+                        print(f"\033[1;35mHorário:\033[m {encomenda['Horário']}")
                         print('\033[1;35m~'*100,'\033[m')
-                    if 'animal' in encomenda:
-                     print(f"\033[1;35mAnimal:\033[m {encomenda['animal']}")
-                    print(f"\033[1;35mQuantidade:\033[m {encomenda['quantidade']}")
-                    print(f"\033[1;35mData:\033[m {encomenda['data']}")
-                    print(f"\033[1;35mHorário:\033[m {encomenda['horário']}")
-                    print('\033[1;35m~'*100,'\033[m')
-ver_encomendas()
+                    if 'Animal' in encomenda:
+                        print(f"\033[1;35mAnimal:\033[m {encomenda['Animal']}")
+                        print(f"\033[1;35mQuantidade:\033[m {encomenda['Quantidade']}")
+                        print(f"\033[1;35mData:\033[m {encomenda['Data']}")
+                        print(f"\033[1;35mHorário:\033[m {encomenda['Horário']}")
+                        print('\033[1;35m~'*100,'\033[m')
+
 def comprar_leite():
             print('\033[1;32m~'*100)
             print('~' *42,'COMPRAR LEITE', '~' *42)
             print('~'*100,'\033[m')
             quantidade_leite = int(input('Digite a quantidade desejada: '))
-            if quantidade_leite > leite[0]:
+            if quantidade_leite > leite['Volume']:
                         print('\033[1;31mQuantidade indisponível em estoque!\033[m')
-                        print(f'\033[1;35mEstoque disponível:\033[m {leite[0]}')
+                        print(f'\033[1;35mEstoque disponível:\033[m {leite['Volume']}')
 
             else:
-                        valor_leite = leite[1]
+                        valor_leite = leite['Valor']
                         valor_total = quantidade_leite * valor_leite
                         if len(compras) >= 3:
                             desconto = valor_total * 0.10
@@ -206,10 +224,10 @@ def comprar_leite():
                         else:
                             valor_final = valor_total
                             print(f'\033[1;35mValor final:\033[m {valor_final}')
-                            leite[0] -= quantidade_leite
-                            compras.append({'produto':'LEITE','quantidade':quantidade_leite,'valor':valor_final})
+                            leite['Volume'] -= quantidade_leite
+                            compras.append({'Produto':'LEITE','Quantidade':quantidade_leite,'Valor':valor_final})
                             print('\033[1;34mCompra realizada com sucesso!\033[m')
-comprar_leite()
+
 def historico_compras():
             print('\033[1;32m~'*100)
             print('~'*40,'HISTÓRICOS DE COMPRAS','~'*37)
@@ -219,17 +237,17 @@ def historico_compras():
             else:
                 for compra in compras:
                     print('\033[1;35m~'*100,'\033[m')
-                    if 'produto' in compra:
-                        print(f"\033[1;35mProduto:\033[m{compra['produto']}")
-                        print(f"\033[1;35mQuantidade:\033[m {compra['quantidade']}")
-                        print(f"\033[1;35mData:\033[m {compra['data']}")
-                        print(f"\033[1;35mHorário:\033[m {compra['horário']}")
+                    if 'Produto' in compra:
+                        print(f"\033[1;35mProduto:\033[m{compra['Produto']}")
+                        print(f"\033[1;35mQuantidade:\033[m {compra['Quantidade']}")
+                        print(f"\033[1;35mUnidade:\033[m {compra['Unidade']}")
+                        print(f"\033[1;35mValor:\033[m {compra['Valor']}")
                         print('\033[1;35m~'*100,'\033[m')
-                    if 'animal' in compra:
-                        print(f"\033[1;35mAnimal:\033[m{compra['animal']}")
-                        print(f"\033[1;35mQuantidade:\033[m{compra['quantidade']}")
-                        print(f"\033[1;35mValor:\033[m R${compra['valor']}")
-historico_compras()   
+                    if 'Animal' in compra:
+                        print(f"\033[1;35mAnimal:\033[m{compra['Animal']}")
+                        print(f"\033[1;35mQuantidade:\033[m{compra['Quantidade']}")
+                        print(f"\033[1;35mValor:\033[m R${compra['Valor']}")
+  
 def beneficios_cliente():
             print('\033[1;32m~'*100)
             print('~'*40,'BENEFÍCIOS DO CLIENTE','~'*37)
@@ -240,7 +258,7 @@ def beneficios_cliente():
             else: 
                 faltam = 3 - len(compras)
                 print(f'\033[1;34mFaltam {faltam} compras para liberar os 10% de desconto.\033[m')
-beneficios_cliente()
+
 def formas_pagamento():
             print('\033[1;32m~'*100)
             print('~'*40,'FORMAS DE PAGAMENTO','~'*39)
@@ -263,8 +281,8 @@ def formas_pagamento():
 
             else:
                 print('\033[1;31mOpção inválida!\033[m') 
-formas_pagamento()
+
 def voltando_inicio():
     print('\033[1;34mVoltando ao menu inicial...\033[m')
-voltando_inicio()
+
                    
