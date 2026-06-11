@@ -330,7 +330,51 @@ def conversor_queijo():
             elif leite["Volume"] >= leite_necessario:
                 leite["Volume"] -= leite_necessario
                 valor_sub = float(input('Qual o valor para venda desse produto? '))
-                produtos.append(['Queijo Manteiga',quantidade_producao,'kg',valor_sub])
+                produtos.append({'Produto':'Queijo Manteiga','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '3':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('Quantidade inexistente! Tente novamente.')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 10
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de queijo, serão necessários\033[m {leite_necessario:.2f} \033[1;35mlitros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Mussarela','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+    elif decisao == '4':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('Quantidade inexistente! Tente novamente.')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 10
+        print(f'Para fabricar {quantidade_producao} kg de queijo, serão necessários {leite_necessario:.2f} litros de leite!')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite[0] < leite_necessario:
+                print('Quantidade no estoque indisponível para fabrição!')
+            elif leite[0] >= leite_necessario:
+                leite[0] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append(['Requeijão',quantidade_producao,'kg',valor_sub])
                 print('Conversão realizada com sucesso!')
         else:
             print('Conversão cancelada!')
