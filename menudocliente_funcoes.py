@@ -25,9 +25,9 @@ def ver_produtos():
                 print('~' *41,'LISTA DE PRODUTOS', '~' *40)
                 print('~'*100, '\033[m')
                 for item in produtos:
-                    print(f'\033[1;35mProduto:\033[m {item['Produto']}')
-                    print(f'\033[1;35mQuantidade:\033[m {item['Quantidade']} {item['Unidade']}')
-                    print(f'\033[1;35mValor:\033[m R${item['Valor']}')
+                    print(f'\033[1;35mProduto:\033[m {item["Produto"]}')
+                    print(f'\033[1;35mQuantidade:\033[m {item["Quantidade"]} {item["Unidade"]}')
+                    print(f'\033[1;35mValor:\033[m R${item["Valor"]}')
                     print('\033[1;35m~' * 30,'\033[m')
 ver_produtos()
 def comprar_produto():
@@ -43,7 +43,7 @@ def comprar_produto():
                     quantidade_compra = int(input('Digite a quantidade desejada: '))
                     if quantidade_compra > item['Quantidade']:
                         print('\033[1;31mQuantidade indisponível em estoque!\033[m')
-                        print(f'\033[1;35mEstoque disponível:\033[m {item['Quantidade']}{item['Unidade']}')
+                        print(f'\033[1;35mEstoque disponível:\033[m {item["Quantidade"]}{item["Unidade"]}')
 
                     else:
                         unidade = item['Unidade']
@@ -106,12 +106,13 @@ def ver_animais():
                 print('~' *40,'LISTA DE ANIMAIS', '~' *40)
                 print('~'*100, '\033[m')
                 for item in animais:
-                    print(f'\033[1;35mAnimal:\033[m {item['Animal']}')
-                    print(f'\033[1;35mQuantidade:\033[m {item['Quantidade']}')
-                    print(f'\033[1;35mPeso:\033[m {item['Peso']}')
-                    print(f'\033[1;35mGênero:\033[m {item['Gênero']}')
-                    print(f'\033[1;35mStatus:\033[m {item['Status']}')
-                    print(f'\033[1;35mValor:\033[m R${item['Valor']}')
+                    print(f"\033[1;35mBrinco:\033[m {item['Brinco']}")
+                    print(f'\033[1;35mAnimal:\033[m {item["Animal"]}')
+                    print(f'\033[1;35mQuantidade:\033[m {item["Quantidade"]}')
+                    print(f'\033[1;35mPeso:\033[m {item["Peso"]}')
+                    print(f'\033[1;35mGênero:\033[m {item["Gênero"]}')
+                    print(f'\033[1;35mStatus:\033[m {item["Status"]}')
+                    print(f'\033[1;35mValor:\033[m R${item["Valor"]}')
                     print('\033[1;35m~' * 100,'\033[m')
 
 def comprar_animal():
@@ -127,7 +128,7 @@ def comprar_animal():
                     quantidade_animal = int(input('Digite a quantidade desejada: '))
                     if quantidade_animal > item['Quantidade']:
                         print('\033[1;31mQuantidade indisponível em estoque!\033[m')
-                        print(f'Estoque disponível: {item['Quantidade']}')
+                        print(f'Estoque disponível: {item["Quantidade"]}')
 
                     else:
                         valor_animal = item['Valor']
@@ -257,8 +258,8 @@ def beneficios_cliente():
                 
             else: 
                 faltam = 3 - len(compras)
-                print(f'\033[1;34mFaltam {faltam} compras para liberar os 10% de desconto.\033[m')
-
+                print(f'\033[1;35mFaltam \033[m{faltam} \033[1;35mcompras para liberar os\033[m \033[1;33m10%\033[m \033[1;35mde desconto.\033[m')
+beneficios_cliente()
 def formas_pagamento():
             print('\033[1;32m~'*100)
             print('~'*40,'FORMAS DE PAGAMENTO','~'*39)

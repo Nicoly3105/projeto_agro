@@ -3,8 +3,8 @@ import maskpass
 from email_validator import validate_email, EmailNotValidError
 
 #login
-login_cliente = [('cliente1','senha1'),('cliente2','senha2')]
-login_adm = [('adm1','senha1'),('adm2','senha2')]
+login_cliente = [{'cliente1','senha1'},{'cliente2','senha2'}]
+login_adm = [{'adm1','senha1'},{'adm2','senha2'}]
 menu_login = []
 login_encontrado_cliente = False
 login_encontrado_adm = False
@@ -23,14 +23,14 @@ def verificação_login():
             login_encontrado_adm = False
 
             for i in login_cliente:
-                if login == i[0] and senha == i[1]:
+                if login == i['Login'] and senha == i['Senha']:
                     login_encontrado = True
                     login_encontrado_cliente = True
                     print('\033[1;34mLogin cliente encontrado com sucesso!\033[m')
                     break
             if login_encontrado == False:
                 for i in login_adm:
-                    if login == i[0] and senha == i[1]:
+                    if login == i['Login'] and senha == i['Senha']:
                         login_encontrado = True
                         login_encontrado_adm = True
                         print('\033[1;34mLogin ADM encontrado com sucesso!\033[m')
@@ -65,7 +65,7 @@ def cadastro_cliente():
                     if tem_letra and tem_numero:
                         confirmar_senha = maskpass.askpass(prompt='Confirme sua senha: ', mask='\033[1;37m*\033[m')
                         if confirmar_senha == senha:
-                            login_cliente.append([login, senha])
+                            login_cliente.append({'Login':login,'Senha': senha})
                             print('\033[1;34mCadastro realizado com sucesso!\033[m')
                             break
                         else:
@@ -100,7 +100,7 @@ def cadastro_adm():
                     if tem_letra and tem_numero:
                         confirmar_senha = maskpass.askpass(prompt='Confirme sua senha: ', mask='*')
                         if confirmar_senha == senha:
-                            login_adm.append([login, senha])
+                            login_adm.append({'Login':login, 'Senha':senha})
                             print('\033[1;34mCadastro realizado com sucesso!\033[m')
                             break
                         else:

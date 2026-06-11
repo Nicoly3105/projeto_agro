@@ -57,7 +57,7 @@ while True:
                         confirmar_senha = input('Confirme sua senha: ')
 
                         if confirmar_senha == senha:
-                            login_cliente.append([login, senha])
+                            login_cliente.append({'Login':login,'Senha': senha})
                             print('Cadastro realizado com sucesso!')
                             break
                         else:

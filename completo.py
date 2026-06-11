@@ -334,7 +334,9 @@ if login_encontrado_adm == True:
                     else:
                         print('Produto não encontrado!')
         elif op_adm == 7:
+            print('\033[1;32m~'*100,'\033[m')
             print('\033[1;32m~'*38,'CONVERSOR DE FABRICAÇÃO','~\033[m'*39)
+            print('\033[1;32m~'*100,'\033[m')
             print('[\033[1;33m1\033[m]QUEIJO\n[\033[1;33m2\033[m]DERIVADOS\n[\033[1;33m3\033[m]ARTESANAIS')
             escolha = input('Qual produto você deseja fabricar? ')
             if escolha == '1':
@@ -360,6 +362,7 @@ if login_encontrado_adm == True:
                                 valor_sub = float(input('Qual o valor para venda desse produto? '))
                                 produtos.append(['Coalho',quantidade_producao,'kg',valor_sub])
                                 print('Conversão realizada com sucesso!')
+                                # 
                         else:
                             print('Conversão cancelada!')
                             break

@@ -4,6 +4,7 @@ produtos = []
 leite = {'Produto':'Leite','Volume':1000,'Valor':5.5}
 def cadastro_animais():
     print('\033[1;32m~'*40,'CADASTRO DE ANIMAIS','~'*39, '\033[m')
+    brinco = input('Digite a numeração do brinco do animal: ').capitalize()
     animal = input('Digite o animal que você deseja cadastrar: ').capitalize()
     while True:
         peso = float(input('Digite o peso do animal: '))
@@ -21,9 +22,10 @@ def cadastro_animais():
             continue
         else:
             break 
-    animais.append({'Animal':animal,'Peso':peso,'Gênero':genero,'Status':status,'Valor':valor})
+    animais.append({'Brinco':brinco,'Animal':animal,'Peso':peso,'Gênero':genero,'Status':status,'Valor':valor})
     print('\033[1;34mAnimal cadastrado com sucesso!\033[m')
     for item in animais:
+        print(f"\033[1;35mBrinco:\033[m {item['Brinco']}")
         print(f"\033[1;35mAnimal:\033[m {item['Animal']}")
         print(f"\033[1;35mPeso:\033[m {item['Peso']}")
         print(f"\033[1;35mGênero:\033[m {item['Gênero']}")
@@ -39,6 +41,7 @@ def lista_animais():
         print('~' *35,'LISTA DE ANIMAIS CADASTRADOS', '~' *35)
         print('~'*100, '\033[m')
         for item in animais:
+            print(f"\033[1;35mBrinco:\033[m {item['Brinco']}")
             print(f"\033[1;35mAnimal:\033[m {item['Animal']}")
             print(f"\033[1;35mPeso:\033[m {item['Peso']}")
             print(f"\033[1;35mGênero:\033[m {item['Gênero']}")
@@ -58,38 +61,44 @@ def alterar_remover_animal():
                 alteracao = input('Qual animal você deseja alterar? ').capitalize()
                 for i in animais:
                     if i['Animal'] == alteracao:
+                            print(f"\033[1;35mBrinco:\033[m {i['Brinco']}")
                             print(f"\033[1;35mAnimal:\033[m {i['Animal']}")
                             print(f"\033[1;35mPeso:\033[m {i['Peso']}")
                             print(f"\033[1;35mGênero:\033[m {i['Gênero']}")
                             print(f"\033[1;35mStatus:\033[m {i['Status']}")
                             print(f"\033[1;35mValor:\033[m R${i['Valor']}")
                             print('\033[1;35m~\033[m'*100)
-                            print('[\033[1;33m1\033[m]TIPO ANIMAL\n[\033[1;33m2\033[m]PESO\n[\033[1;33m3\033[m]GÊNERO\n[\033[1;33m4\033[m]STATUS\n[\033[1;33m5\033[m]VALOR')
+                            print('[\033[1;33m1\033[m]BRINCO[\033[1;33m2\033[m]TIPO ANIMAL\n[\033[1;33m3\033[m]PESO\n[\033[1;33m4\033[m]GÊNERO\n[\033[1;33m5\033[m]STATUS\n[\033[1;33m6\033[m]VALOR')
                             escolha_alteracao = input('Digite o que você deseja alterar: ')
                             if escolha_alteracao == '1':
+                                tipo_alteracao = input(f"Digite o nome que você deseja substituir no lugar de: {i['Animal']}>  ")
+                                i['Brinco'] = tipo_alteracao
+                                print('\033[1;34mBrinco alterado com sucesso!\033[m')
+                                break
+                            elif escolha_alteracao == '2':
                                 tipo_alteracao = input(f"Digite o nome que você deseja substituir no lugar de: {i['Animal']}>  ")
                                 i['Animal'] = tipo_alteracao
                                 print('\033[1;34mAnimal alterado com sucesso!\033[m')
                                 break
-                            elif escolha_alteracao == '2':
+                            elif escolha_alteracao == '3':
                                 peso_alteracao = float(input(f"Digite o peso que você deseja substituir no lugar de: {i['Peso']}> "))
                                 i['Peso'] = peso_alteracao
-                                print('\033[1;34mAnimal alterado com sucesso!\033[m')
-                                break
-                            elif escolha_alteracao == '3':
-                                genero_alteracao = input(f"Digite o gênero que você deseja substituir no lugar de: {i['Gênero']}>  ")
-                                i['Gênero'] = genero_alteracao
-                                print('\033[1;34mAnimal alterado com sucesso!\033[m')
+                                print('\033[1;34mPeso alterado com sucesso!\033[m')
                                 break
                             elif escolha_alteracao == '4':
-                                status_alteracao = input(f"Digite o status que você deseja substituir no lugar de: {i['Status']}>  ")
-                                i['Status'] = status_alteracao
-                                print('\033[1;34mAnimal alterado com sucesso!\033[m')
+                                genero_alteracao = input(f"Digite o gênero que você deseja substituir no lugar de: {i['Gênero']}>  ")
+                                i['Gênero'] = genero_alteracao
+                                print('\033[1;34mGênero alterado com sucesso!\033[m')
                                 break
                             elif escolha_alteracao == '5':
+                                status_alteracao = input(f"Digite o status que você deseja substituir no lugar de: {i['Status']}>  ")
+                                i['Status'] = status_alteracao
+                                print('\033[1;34mStatus alterado com sucesso!\033[m')
+                                break
+                            elif escolha_alteracao == '6':
                                 valor_alteracao = float(input(f"Digite o valor que você deseja substituir no lugar de: {i['Valor']}>  "))
                                 i['Valor'] = valor_alteracao
-                                print('\033[1;34mAnimal alterado com sucesso!\033[m')
+                                print('\033[1;34mValor alterado com sucesso!\033[m')
                                 break
                 else:
                     print('\033[1;31mAnimal não encontrado!\033[m')
@@ -100,6 +109,7 @@ def alterar_remover_animal():
                 remover = input('Digite o animal que você deseja remover: ').capitalize()
                 for i in animais:
                     if i['Animal'] == remover:
+                        print(f"\033[1;35mBrinco:\033[m {i['Brinco']}")
                         print(f"\033[1;35mAnimal:\033[m {i['Animal']}")
                         print(f"\033[1;35mPeso:\033[m {i['Peso']}")
                         print(f"\033[1;35mGênero:\033[m {i['Gênero']}")
@@ -285,7 +295,7 @@ def alterar_remover_produto():
 
 # conversor
 def conversor_queijo():
-    print('\033[1;32m~\033[m'*100)
+    print('\033[1;32m~'*100,'\033[m')
     print('[\033[1;33m1\033[m]COALHO\n[\033[1;33m2\033[m]QUEIJO MANTEIGA\n[\033[1;33m3\033[m]MUSSARELA\n[\033[1;33m4\033[m]REQUEIJÃO')
     decisao = input('Digite a opção de queijo que deseja fabricar: ')
     if decisao == '1':
@@ -357,6 +367,7 @@ def conversor_queijo():
                 print('\033[1;34mConversão realizada com sucesso!\033[m')
         else:
             print('\033[1;31mConversão cancelada!\033[m')
+# 
     elif decisao == '4':
         while True:
             quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
@@ -366,15 +377,237 @@ def conversor_queijo():
             else:
                 break
         leite_necessario = quantidade_producao * 10
-        print(f'Para fabricar {quantidade_producao} kg de queijo, serão necessários {leite_necessario:.2f} litros de leite!')
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de queijo, serão necessários\033[m {leite_necessario:.2f} \033[1;35mlitros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
         confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
         if confirmacao == 'S':
-            if leite[0] < leite_necessario:
-                print('Quantidade no estoque indisponível para fabrição!')
-            elif leite[0] >= leite_necessario:
-                leite[0] -= leite_necessario
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
                 valor_sub = float(input('Qual o valor para venda desse produto? '))
-                produtos.append(['Requeijão',quantidade_producao,'kg',valor_sub])
-                print('Conversão realizada com sucesso!')
+                produtos.append({'Produto':'Requeijão','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
         else:
-            print('Conversão cancelada!')
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+
+def conversor_derivados():
+    print('\033[1;32m~'*100,'\033[m')
+    print('[\033[1;33m1\033[m]MANTEIGA COMUM\n[\033[1;33m2\033[m]CREME DE LEITE\n[\033[1;33m3\033[m]IOGURTE\n[\033[1;33m4\033[m]DOCE DE LEITE\n[\033[1;33m5\033[m]COALHADA')
+    decisao = input('Digite a opção de queijo que deseja fabricar: ')
+    if decisao == '1':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 5
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de manteiga, serão necessários\033[m {leite_necessario:.2f}\033[1;35m litros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite["Volume"] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite["Volume"] >= leite_necessario:
+                leite["Volume"] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Manteiga','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '2':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 5
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao} \033[1;35mlitros de creme de leite, serão necessários \033[m{leite_necessario:.2f} \033[1;35mlitros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produtos':'Creme de Leite','Unidade':quantidade_producao,'Unidade':'L','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '3':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 1
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m litro de iogurte, serão necessários \033[m{leite_necessario:.2f}\033[1;35m litros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Iogurte','Quantidade':quantidade_producao,'Unidade':'L','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '4':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 5
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de doce de leite, serão necessários\033[m {leite_necessario:.2f}\033[1;35m litros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Doce de Leite','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '5':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 1.25
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao} \033[1;35mkg de coalhada, serão necessários\033[m {leite_necessario:.2f}\033[1;35m litros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Coalhada','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+def conversor_artesanais():
+    print('\033[1;32m~\033[m'*100)
+    print('[\033[1;33m1\033[m]MANTEIGA DA TERRA\n[\033[1;33m2\033[m]QUEIJO DEFUMADO[\033[1;33m3\033[m]NATA')
+    decisao = input('Digite a opção de queijo que deseja fabricar: ')
+    if decisao == '1':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 10
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de manteiga da terra, serão necessários\033[m {leite_necessario:.2f}\033[1;35m litros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Manteiga da Terra','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '2':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 11.1
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de queijo defumado, serão necessários\033[m {leite_necessario:.2f}\033[1;35m litros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Queijo Defumado','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+    elif decisao == '3':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 6.6
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao}\033[1;35m kg de nata, serão necessários\033[m {leite_necessario} \033[1;35mlitros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite['Volume'] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite['Volume'] >= leite_necessario:
+                leite['Volume'] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Nata','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+def producao_diaria():
+    print('\033[1;32m~'*100)
+    print('~'*42,'PRODUÇÃO DIÁRIA','~'*41)
+    print('~\033[m'*100)
+    print(f'\033[1;35mEstoque atual:\033[m{leite["Volume"]}')
+    while True:
+        print('\033[1;32m~\033[m'*100)
+        print('[\033[1;33m1\033[m]ADICIONAR\n[\033[1;33m2\033[m]REMOVER\n[\033[1;33m3\033[m]SAIR')
+        escolha_leite = input('Digite a opção que deseja: ')
+        if escolha_leite == '1':
+            while True:
+                producao_diaria = float(input('Digite a quantidade de leite ordenhado do dia: '))
+                if producao_diaria <= 0 :
+                    print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                    continue
+                else:
+                    break
+            leite['Volume'] += producao_diaria
+            valor_diaria = float(input('Digite o valor do leite atualizado: '))
+            leite.append['Valor']+= valor_diaria
+            print(f'\033[1;34mProdução diária cadastrada com sucesso!\033[m\n\033[1;35mEstoque atual:\033[m {leite["Volume"]}')
+        elif escolha_leite == '2':
+            leite_remover = float(input('Digite a quantidade de leite que você deseja remover: '))
+            leite['Volume'] -= leite_remover
+            print(f'\033[1;34mQuantidade de leite removida com sucesso!\033[m\n\033[1;35mEstoque atual:\033[m {leite["Volume"]}')
+        elif escolha_leite == '3':
+            break
