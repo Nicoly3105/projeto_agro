@@ -1,7 +1,7 @@
 # funções adm
 animais = []
 produtos = []
-leite = []
+leite = {'Produto':'Leite','Volume':1000,'Valor':5.5}
 def cadastro_animais():
     print('\033[1;32m~'*40,'CADASTRO DE ANIMAIS','~'*39, '\033[m')
     animal = input('Digite o animal que você deseja cadastrar: ').capitalize()
@@ -155,13 +155,14 @@ def cadas_leite():
             continue
         else:
             break 
-    leite.append({'Volume':volume,'Valor':valor})
+    leite['Volume'] += volume
+    leite['Valor'] += valor
     print('\033[1;34mProduto cadastrado com sucesso!\033[m')
-    for i in leite:
-        print(f'\033[1;35mProduto:\033[m Leite')
-        print(f'\033[1;35mQuantidade:\033[m {i["Volume"]} litros')
-        print(f'\033[1;35mValor:\033[m R${i["Valor"]}')
-        print('\033[1;35m~'*100,'\033[m')
+    print(f'\033[1;35mProduto:\033[m Leite')
+    print(f'\033[1;35mQuantidade:\033[m {leite["Volume"]} litros')
+    print(f'\033[1;35mValor:\033[m R${leite["Valor"]}')
+    print('\033[1;35m~'*100,'\033[m')
+
 
 def cadas_derivado():
     print('\033[1;32m~\033[m'*100)
@@ -282,3 +283,54 @@ def alterar_remover_produto():
         else:
             print('\033[1;32mProduto não encontrado!\033[m')
 
+# conversor
+def conversor_queijo():
+    print('\033[1;32m~\033[m'*100)
+    print('[\033[1;33m1\033[m]COALHO\n[\033[1;33m2\033[m]QUEIJO MANTEIGA\n[\033[1;33m3\033[m]MUSSARELA\n[\033[1;33m4\033[m]REQUEIJÃO')
+    decisao = input('Digite a opção de queijo que deseja fabricar: ')
+    if decisao == '1':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('\033[1;31mQuantidade inexistente! Tente novamente.\033[m')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 10
+        print(f'\033[1;35mPara fabricar\033[m {quantidade_producao} \033[1;35mkg de queijo, serão necessários\033[m {leite_necessario:.2f} \033[1;35mlitros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite["Volume"] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite["Volume"] >= leite_necessario:
+                leite["Volume"] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append({'Produto':'Coalho','Quantidade':quantidade_producao,'Unidade':'kg','Valor':valor_sub})
+                print('\033[1;34mConversão realizada com sucesso!\033[m')
+        else:
+            print('\033[1;31mConversão cancelada!\033[m')
+# 
+
+    elif decisao == '2':
+        while True:
+            quantidade_producao = float(input('Qual a quantidade que você deseja fabricar? '))
+            if quantidade_producao <=0:
+                print('Quantidade inexistente! Tente novamente.')
+                continue
+            else:
+                break
+        leite_necessario = quantidade_producao * 10
+        print(f'\033[1;35mPara fabricar \033[m{quantidade_producao} \033[1;35mkg de queijo, serão necessários\033[m {leite_necessario:.2f} \033[1;35mlitros de leite!\033[m')
+        print(f'\033[1;35mQuantidade no estoque:\033[m {leite["Volume"]}')
+        confirmacao = input('Deseja fabricar mesmo assim?(S/N): ').strip().upper()
+        if confirmacao == 'S':
+            if leite["Volume"] < leite_necessario:
+                print('\033[1;31mQuantidade no estoque indisponível para fabrição!\033[m')
+            elif leite["Volume"] >= leite_necessario:
+                leite["Volume"] -= leite_necessario
+                valor_sub = float(input('Qual o valor para venda desse produto? '))
+                produtos.append(['Queijo Manteiga',quantidade_producao,'kg',valor_sub])
+                print('Conversão realizada com sucesso!')
+        else:
+            print('Conversão cancelada!')
