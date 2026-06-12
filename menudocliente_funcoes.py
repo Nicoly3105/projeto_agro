@@ -1,6 +1,7 @@
 import qrcode_terminal
 from rich.console import Console
 from rich.panel import Panel
+from rich.table import Table
 console = Console()
 
 compras = []
@@ -12,7 +13,7 @@ leite = []
 print('\033[1;32m~' * 100)
 print('~' *43,'MENU CLIENTE', '~' *43)
 print('~' * 100)
-print('\033[m[\033[1;33m1\033[m] VER PRODUTOS\n[\033[1;33m2\033[m] COMPRAR PRODUTOS\n[\033[1;33m3\033[m] ENCOMENDAR PRODUTOS\n[\033[1;33m4\033[m] VER ANIMAIS\n[\033[1;33m5\033[m] COMPRAR ANIMAL\n[\033[1;33m6\033[m] ENCOMENDAR ANIMAL\n[\033[1;33m7\033[m] VER ENCOMENDAS\n[\033[1;33m8\033[m] COMPRAR LEITE\n[\033[1;33m9\033[m] HISTÓRICOS DE COMPRAS\n[\033[1;33m10\033[m] BENEFÍCIOS DO CLIENTE\n[\033[1;33m11\033[m] FORMAS DE PAGAMENTO\n[\033[1;33m12\033[m] VOLTAR')
+print('\033[m[\033[1;33m1\033[m] VER PRODUTOS\n[\033[1;33m2\033[m] COMPRAR PRODUTOS\n[\033[1;33m3\033[m] ENCOMENDAR PRODUTOS\n[\033[1;33m4\033[m] VER ANIMAIS\n[\033[1;33m5\033[m] COMPRAR ANIMAL\n[\033[1;33m6\033[m] ENCOMENDAR ANIMAL\n[\033[1;33m7\033[m] VER ENCOMENDAS\n[\033[1;33m8\033[m] COMPRAR LEITE\n[\033[1;33m9\033[m] RECIBO DE COMPRAS\n[\033[1;33m10\033[m] BENEFÍCIOS DO CLIENTE\n[\033[1;33m11\033[m] FORMAS DE PAGAMENTO\n[\033[1;33m12\033[m] VOLTAR')
 
 op_cliente = int(input('Digite a opção desejada: '))
 
@@ -29,7 +30,6 @@ def ver_produtos():
                     print(f'\033[1;35mQuantidade:\033[m {item["Quantidade"]} {item["Unidade"]}')
                     print(f'\033[1;35mValor:\033[m R${item["Valor"]}')
                     print('\033[1;35m~' * 30,'\033[m')
-ver_produtos()
 def comprar_produto():
             print('\033[1;32m~'*100)
             print('~' *41,'COMPRAR PRODUTOS', '~' *41)
@@ -63,8 +63,6 @@ def comprar_produto():
                     break
             if encontrado == False:
                 print('\033[1;31mProduto não encontrado!\033[m')
-
-comprar_produto()
 def encomendar_produto():
             print('\033[1;32m~'*100)
             print('~' *40,'ENCOMENDAR PRODUTOS', '~' *39)
@@ -97,7 +95,6 @@ def encomendar_produto():
             encomendas.append({'Produto':produto_input,'Quantidade':quantidade,'Data':data,'Horário':horario})
 
             print('\033[1;34mEncomenda realizada com sucesso!\033[m')
-encomendar_produto()
 def ver_animais():
             if len(animais) == 0:
                 print('\033[1;31mNenhum animal cadastrado!\033[m')
@@ -229,25 +226,44 @@ def comprar_leite():
                             compras.append({'Produto':'LEITE','Quantidade':quantidade_leite,'Valor':valor_final})
                             print('\033[1;34mCompra realizada com sucesso!\033[m')
 
-def historico_compras():
-            print('\033[1;32m~'*100)
-            print('~'*40,'HISTÓRICOS DE COMPRAS','~'*37)
-            print('~'*100 ,'\033[m')
-            if len(compras) == 0:
-                print('\033[1;31mNenhuma encomenda realizada!\033[m')
-            else:
-                for compra in compras:
-                    print('\033[1;35m~'*100,'\033[m')
-                    if 'Produto' in compra:
-                        print(f"\033[1;35mProduto:\033[m{compra['Produto']}")
-                        print(f"\033[1;35mQuantidade:\033[m {compra['Quantidade']}")
-                        print(f"\033[1;35mUnidade:\033[m {compra['Unidade']}")
-                        print(f"\033[1;35mValor:\033[m {compra['Valor']}")
-                        print('\033[1;35m~'*100,'\033[m')
-                    if 'Animal' in compra:
-                        print(f"\033[1;35mAnimal:\033[m{compra['Animal']}")
-                        print(f"\033[1;35mQuantidade:\033[m{compra['Quantidade']}")
-                        print(f"\033[1;35mValor:\033[m R${compra['Valor']}")
+def recibo_compras():
+    print('\033[1;32m' + '~' * 100)
+    print('~' * 40, 'RECIBO DE COMPRAS', '~' * 37)
+    print('~' * 100, '\033[m')
+
+    if len(compras) == 0:
+        print('\033[1;31mNenhuma encomenda realizada!\033[m')
+    else:
+        table = Table(title="RECIBO DE COMPRAS")
+
+        table.add_column("Item", justify="center")
+        table.add_column("Tipo", justify="center")
+        table.add_column("Descrição", justify="center")
+        table.add_column("Quantidade", justify="center")
+        table.add_column("Valor", justify="center")
+
+        for i, compra in enumerate(compras, start=1):
+
+            if 'Produto' in compra:
+                table.add_row(
+                    str(i),
+                    "Produto",
+                    compra['Produto'],
+                    str(compra['Quantidade']),
+                    f"R$ {compra['Valor']:.2f}"
+                )
+
+            if 'Animal' in compra:
+                table.add_row(
+                    str(i),
+                    "Animal",
+                    compra['Animal'],
+                    str(compra['Quantidade']),
+                    f"R$ {compra['Valor']:.2f}"
+                )
+
+        console.print(table)
+    recibo_compras()
   
 def beneficios_cliente():
             print('\033[1;32m~'*100)
@@ -259,7 +275,6 @@ def beneficios_cliente():
             else: 
                 faltam = 3 - len(compras)
                 print(f'\033[1;35mFaltam \033[m{faltam} \033[1;35mcompras para liberar os\033[m \033[1;33m10%\033[m \033[1;35mde desconto.\033[m')
-beneficios_cliente()
 def formas_pagamento():
             print('\033[1;32m~'*100)
             print('~'*40,'FORMAS DE PAGAMENTO','~'*39)
@@ -286,4 +301,4 @@ def formas_pagamento():
 def voltando_inicio():
     print('\033[1;34mVoltando ao menu inicial...\033[m')
 
-                   
+
