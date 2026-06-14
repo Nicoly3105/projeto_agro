@@ -664,8 +664,6 @@ while True:
  ██ ██ ██  ██▀▀▀▀  ██ ██   ██ █       ▄█ ██  ██▌  ██   ██ ██ ██ 
 ▄██ ██ ██▄  ▀█▄▄▀ ▄██ ██▄  ▀█▄▀▄      ▀█▄▀▀▄  ▀█▄▀██▄ ▄██ ██ ██▄  """)
 
-
-
         print('\033[m[\033[1;33m1\033[m] CADASTRAR ANIMAIS\n''[\033[1;33m2\033[m] LISTAR ANIMAIS\n''[\033[1;33m3\033[m] ALTERAR/REMOVER ANIMAIS\n''[\033[1;33m4\033[m] CADASTRAR QUEIJOS\n''[\033[1;33m5\033[m] CADASTRAR LEITE\n''[\033[1;33m6\033[m] CADASTRAR DERIVADOS\n''[\033[1;33m7\033[m] CADASTRAR ARTESANAIS\n''[\033[1;33m8\033[m] LISTAR PRODUTOS\n''[\033[1;33m9\033[m] ALTERAR/REMOVER PRODUTOS\n''[\033[1;33m10\033[m] CONVERSOR DE QUEIJOS\n''[\033[1;33m11\033[m] CONVERSOR DE DERIVADOS\n''[\033[1;33m12\033[m] CONVERSOR ARTESANAIS\n''[\033[1;33m13\033[m] PRODUÇÃO DIÁRIA\n''[\033[1;33m14\033[m] HISTÓRICO DE MOVIMENTAÇÃO\n''[\033[1;33m15\033[m] RELATÓRIO GERAL\n'
               '[\033[1;33m16\033[m] VOLTAR')
         op_adm = int(input('\nDigite a opção desejada: '))
