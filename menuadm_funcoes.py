@@ -1,7 +1,10 @@
-# funções adm
-animais = []
-produtos = []
+from colorama import Fore, init
+init()
+
+animais = [ {'tipo': 'Vaca','peso': 37,'genero': 'Fêmea','status': 'Grávida','valor': 8}]
+produtos = [{'nome': 'Coalho','quantidade': 7,'unidade': 'kg','valor': 6.5}]
 leite = {'Produto':'Leite','Volume':1000,'Valor':5.5}
+historico = []
 def cadastro_animais():
     print('\033[1;32m~'*40,'CADASTRO DE ANIMAIS','~'*39, '\033[m')
     brinco = input('Digite a numeração do brinco do animal: ').capitalize()
@@ -23,6 +26,7 @@ def cadastro_animais():
         else:
             break 
     animais.append({'Brinco':brinco,'Animal':animal,'Peso':peso,'Gênero':genero,'Status':status,'Valor':valor})
+    historico.append({'Ação':'Cadastro Animal', 'Item': animal, 'Quantidade': 1})
     print('\033[1;34mAnimal cadastrado com sucesso!\033[m')
     for item in animais:
         print(f"\033[1;35mBrinco:\033[m {item['Brinco']}")
@@ -142,6 +146,7 @@ def cadas_queijo():
         else:
             break 
     produtos.append({'Produto':produto,'Quantidade':peso,'Unidade':unidade,'Valor':valor})
+    historico.append({'Ação':'Cadastro Produto', 'Item': produto, 'Quantidade': peso})
     print('\033[1;34mProduto cadastrado com sucesso!\033[m')
     for i in produtos:
         print(f'\033[1;35mProduto:\033[m {i["Produto"]}')
@@ -603,11 +608,98 @@ def producao_diaria():
                     break
             leite['Volume'] += producao_diaria
             valor_diaria = float(input('Digite o valor do leite atualizado: '))
-            leite.append['Valor']+= valor_diaria
+            leite.append['Valor']+= valor_diaria            
             print(f'\033[1;34mProdução diária cadastrada com sucesso!\033[m\n\033[1;35mEstoque atual:\033[m {leite["Volume"]}')
         elif escolha_leite == '2':
             leite_remover = float(input('Digite a quantidade de leite que você deseja remover: '))
             leite['Volume'] -= leite_remover
+            historico.append({'Ação':'Produção Leite', 'Item':'Leite', 'Quantidade': producao_diaria})
             print(f'\033[1;34mQuantidade de leite removida com sucesso!\033[m\n\033[1;35mEstoque atual:\033[m {leite["Volume"]}')
         elif escolha_leite == '3':
             break
+
+def historico_movimentacao():
+    print('\033[1;32m~'*100)
+    print('~'*30,'HISTÓRICO DE MOVIMENTAÇÃO','~'*30)
+    print('~'*100,'\033[m')
+    if len(historico) == 0:
+        print('\033[1;31mNenhuma movimentação registrada!\033[m')
+    else:
+        for item in historico:
+            print('\033[1;35m~'*100,'\033[m')
+            print(f"\033[1;35mAção:\033[m {item['Ação']}")
+            print(f"\033[1;35mItem:\033[m {item['Item']}")
+            print(f"\033[1;35mQuantidade:\033[m {item['Quantidade']}")
+    print('\033[1;35m~'*100,'\033[m')
+
+def relatorio_geral():
+    print('\033[1;32m~'*100)
+    print('~'*37,'RELATÓRIO GERAL','~'*37)
+    print('~'*100,'\033[m')
+    print(f'\033[1;35mTotal de animais cadastrados:\033[m {len(animais)}')
+    print(f'\033[1;35mTotal de produtos cadastrados:\033[m {len(produtos)}')
+    print('\n\033[1;35mESTOQUE DE LEITE\033[m')
+    print(f'Volume: {leite["Volume"]} litros')
+    print(f'Valor: R$ {leite["Valor"]}')
+    print('\n\033[1;35mESTOQUE DE PRODUTOS\033[m')
+    if len(produtos) == 0:
+        print('Nenhum produto cadastrado.')
+    else:
+        for produto in produtos:
+            print('\033[1;35m~'*100,'\033[m')
+            print(f"Produto: {produto['Produto']}")
+            print(f"Quantidade: {produto['Quantidade']}")
+            print(f"Unidade: {produto['Unidade']}")
+            print(f"Valor: R$ {produto['Valor']}")
+    print('\033[1;35m~'*100,'\033[m')
+
+def voltar():
+    print('\033[1;31mVoltando ao menu anterior...\033[m')
+
+while True:
+        
+        print(Fore.GREEN + """                                                 ▀██            
+▄ ▄▄ ▄▄▄     ▄▄▄  ▄ ▄▄▄   ▄▄▄ ▄▄       ▄▄▄     ▄▄ ██  ▄ ▄▄ ▄▄▄  
+ ██ ██ ██  ▄██ ██  ██ ██   ██ █       ▀▀▄██  ▄██ ▀██   ██ ██ ██ 
+ ██ ██ ██  ██▀▀▀▀  ██ ██   ██ █       ▄█ ██  ██▌  ██   ██ ██ ██ 
+▄██ ██ ██▄  ▀█▄▄▀ ▄██ ██▄  ▀█▄▀▄      ▀█▄▀▀▄  ▀█▄▀██▄ ▄██ ██ ██▄  """)
+
+
+
+        print('\033[m[\033[1;33m1\033[m] CADASTRAR ANIMAIS\n''[\033[1;33m2\033[m] LISTAR ANIMAIS\n''[\033[1;33m3\033[m] ALTERAR/REMOVER ANIMAIS\n''[\033[1;33m4\033[m] CADASTRAR QUEIJOS\n''[\033[1;33m5\033[m] CADASTRAR LEITE\n''[\033[1;33m6\033[m] CADASTRAR DERIVADOS\n''[\033[1;33m7\033[m] CADASTRAR ARTESANAIS\n''[\033[1;33m8\033[m] LISTAR PRODUTOS\n''[\033[1;33m9\033[m] ALTERAR/REMOVER PRODUTOS\n''[\033[1;33m10\033[m] CONVERSOR DE QUEIJOS\n''[\033[1;33m11\033[m] CONVERSOR DE DERIVADOS\n''[\033[1;33m12\033[m] CONVERSOR ARTESANAIS\n''[\033[1;33m13\033[m] PRODUÇÃO DIÁRIA\n''[\033[1;33m14\033[m] HISTÓRICO DE MOVIMENTAÇÃO\n''[\033[1;33m15\033[m] RELATÓRIO GERAL\n'
+              '[\033[1;33m16\033[m] VOLTAR')
+        op_adm = int(input('\nDigite a opção desejada: '))
+        if op_adm == 1:
+            cadastro_animais()
+        elif op_adm == 2:
+            lista_animais()
+        elif op_adm == 3:
+            alterar_remover_animal()
+        elif op_adm == 4:
+            cadas_queijo()
+        elif op_adm == 5:
+            cadas_leite()
+        elif op_adm == 6:
+            cadas_derivado()
+        elif op_adm == 7:
+            cadas_artesanal()
+        elif op_adm == 8:
+            lista_produtos()
+        elif op_adm == 9:
+            alterar_remover_produto()
+        elif op_adm == 10:
+            conversor_queijo()
+        elif op_adm == 11:
+            conversor_derivados()
+        elif op_adm == 12:
+            conversor_artesanais()
+        elif op_adm == 13:
+            producao_diaria()
+        elif op_adm == 14:
+            historico_movimentacao()
+        elif op_adm == 15:
+            relatorio_geral()
+        elif op_adm == 16:
+            voltar()
+
+            

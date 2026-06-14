@@ -1,10 +1,11 @@
-
 import maskpass
 from email_validator import validate_email, EmailNotValidError
+from colorama import Fore, init
+init()
 
 #login
-login_cliente = [{'cliente1','senha1'},{'cliente2','senha2'}]
-login_adm = [{'adm1','senha1'},{'adm2','senha2'}]
+login_cliente = [{'Login': 'cliente1', 'Senha': 'senha1'},{'Login': 'cliente2', 'Senha': 'senha2'}]
+login_adm = [{'Login': 'adm1', 'Senha': 'senha1'},{'Login': 'adm2', 'Senha': 'senha2'}]
 menu_login = []
 login_encontrado_cliente = False
 login_encontrado_adm = False
@@ -112,3 +113,27 @@ def cadastro_adm():
 
 def voltando_inicio():
     print('\033[1;34mVoltando ao menu inicial...\033[m')
+
+
+while True:
+        
+        print(Fore.GREEN + """                                       ██           ██          ██         ▀██ 
+▄ ▄▄ ▄▄▄     ▄▄▄  ▄ ▄▄▄   ▄▄▄ ▄▄      ▄▄▄  ▄ ▄▄▄   ▄▄▄    ▄▄▄  ▄▄▄   ▄▄▄    ██ 
+ ██ ██ ██  ▄██ ██  ██ ██   ██ █        ██   ██ ██   ██  ▄██ ▀█  ██  ▀▀▄██   ██ 
+ ██ ██ ██  ██▀▀▀▀  ██ ██   ██ █        ██   ██ ██   ██  ███     ██  ▄█ ██   ██ 
+▄██ ██ ██▄  ▀█▄▄▀ ▄██ ██▄  ▀█▄▀▄      ▄██▄ ▄██ ██▄ ▄██▄  ▀█▄▄▀ ▄██▄ ▀█▄▀▀▄ ▄██▄ """)
+        
+        print('[\033[1;33m1\033[m] LOGIN')
+        print('[\033[1;33m2\033[m] CADASTRAR CLIENTE NOVO')
+        print('[\033[1;33m3\033[m] CADASTRAR NOVO ADM')
+        print('[\033[1;33m4\033[m] SAIR')
+        op = int(input('Digite a opção desejada: '))
+        if op == 1:
+            verificação_login()
+        elif op == 2:
+            cadastro_cliente()
+        elif op == 3:
+            cadastro_adm()
+        elif op == 4:
+            voltando_inicio()
+        
