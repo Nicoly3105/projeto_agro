@@ -16,22 +16,24 @@ def verificação_login():
         try:
             validate_email(login)
         except EmailNotValidError:
-            print('Email inválido!')
+            print('\033[1;31mEmail inválido, tente novamente!\033[m')
             continue
 
         senha = maskpass.askpass(prompt='Digite a senha: ', mask='*')
 
         for i in login_cliente:
             if login == i['Login'] and senha == i['Senha']:
-                print('Login cliente OK')
+                print('\033[1;34mLogin CLIENTE encontrado com sucesso!\033[m')
                 return "cliente"
+                
 
         for i in login_adm:
             if login == i['Login'] and senha == i['Senha']:
-                print('Login ADM OK')
+                print('\033[1;34mLogin ADM encontrado com sucesso!\033[m')
                 return "adm"
+                
 
-        print('Login não encontrado')
+        print('\033[1;31mLogin não encontrado\033[m')
 
 #cadas cliente
 def cadastro_cliente():
@@ -105,8 +107,8 @@ def cadastro_adm():
 
 def voltando_inicio():
     print('\033[1;34mVoltando ao menu inicial...\033[m')
-
-
+'''
+tipo = None
 while True:
         
         print(Fore.GREEN + """                                       ██           ██          ██         ▀██ 
@@ -114,22 +116,27 @@ while True:
  ██ ██ ██  ▄██ ██  ██ ██   ██ █        ██   ██ ██   ██  ▄██ ▀█  ██  ▀▀▄██   ██ 
  ██ ██ ██  ██▀▀▀▀  ██ ██   ██ █        ██   ██ ██   ██  ███     ██  ▄█ ██   ██ 
 ▄██ ██ ██▄  ▀█▄▄▀ ▄██ ██▄  ▀█▄▀▄      ▄██▄ ▄██ ██▄ ▄██▄  ▀█▄▄▀ ▄██▄ ▀█▄▀▀▄ ▄██▄ """)
-        
-        print('[\033[1;33m1\033[m] LOGIN')
+        print('\033[1;32m~'*100)
+        print('~'*47,'LOGIN','~'*46)
+        print('~'*100)
+        print('\033[m[\033[1;33m1\033[m] LOGIN')
         print('[\033[1;33m2\033[m] CADASTRAR CLIENTE NOVO')
         print('[\033[1;33m3\033[m] CADASTRAR NOVO ADM')
-        print('[\033[1;33m4\033[m] SAIR')
-        op = int(input('Digite a opção desejada: '))
-        if op == 1:
+        print('[\033[1;33m4\033[m] SAIR\033[m')
+        op = input('Digite a opção desejada: ')
+
+        if op == '1':
             tipo = verificação_login()
-        if tipo == "cliente":
-            print("Entrar menu cliente")
-        elif tipo == "adm":
-            print("Entrar menu adm")
-        elif op == 2:
+            break
+
+        elif op == '2':
             cadastro_cliente()
-        elif op == 3:
+
+        elif op == '3':
             cadastro_adm()
-        elif op == 4:
+
+        elif op == '4':
             voltando_inicio()
-        
+        else:
+            print('\033[1;31mOpção inválida!\033[m')
+'''

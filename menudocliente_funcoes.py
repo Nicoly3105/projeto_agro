@@ -187,7 +187,7 @@ def comprar_animal():
             if encontrado == False:
                 print('\033[1;31mAnimal não encontrado!\033[m')
 
-def ver_encomendas_animais():
+def encomendar_animais():
             print('\033[1;32m~'*100)
             print('~' *40,'ENCOMENDAR ANIMAIS', '~' *39)
             print('~'*100,'\033[m')
@@ -337,6 +337,7 @@ def formas_pagamento():
 def voltando_inicio():
     print('\033[1;34mVoltando ao menu inicial...\033[m')
 
+'''
 while True:
         
         print(Fore.GREEN + """                                          ▀██                    ▀██   ██                   ▄         
@@ -358,7 +359,7 @@ while True:
         elif op_cliente == 5:
             comprar_animal()
         elif op_cliente == 6:
-            ver_encomendas_animais()
+            encomendar_animais()
         elif op_cliente == 7:
             ver_encomendas()
         elif op_cliente == 8:
@@ -372,3 +373,4 @@ while True:
         elif op_cliente == 12:
             voltando_inicio()
 
+'''

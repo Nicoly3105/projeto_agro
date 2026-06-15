@@ -317,7 +317,7 @@ def alterar_remover_produto():
         else:
             print('\033[1;32mProduto não encontrado!\033[m')
     else:
-                print('\033[1;31mOpção inválida!\033[m')
+        print('\033[1;31mOpção inválida!\033[m')
 
 # conversor
 def conversor_queijo():
@@ -420,6 +420,8 @@ def conversor_queijo():
                 print('\033[1;34mConversão realizada com sucesso!\033[m')
         else:
             print('\033[1;31mConversão cancelada!\033[m')
+    else:
+        print('\033[1;31mOpção inválida!\033[m')
 # 
 
 def conversor_derivados():
@@ -545,6 +547,8 @@ def conversor_derivados():
                 print('\033[1;34mConversão realizada com sucesso!\033[m')
         else:
             print('\033[1;31mConversão cancelada!\033[m')
+    else:
+        print('\033[1;31mOpção inválida!\033[m')
 # 
 def conversor_artesanais():
     print('\033[1;32m~\033[m'*100)
@@ -621,6 +625,8 @@ def conversor_artesanais():
                 print('\033[1;34mConversão realizada com sucesso!\033[m')
         else:
             print('\033[1;31mConversão cancelada!\033[m')
+    else:
+        print('\033[1;31mOpção inválida!\033[m')
 # 
 def producao_diaria():
     print('\033[1;32m~'*100)
@@ -651,6 +657,8 @@ def producao_diaria():
             print(f'\033[1;34mQuantidade de leite removida com sucesso!\033[m\n\033[1;35mEstoque atual:\033[m {leite["Volume"]}')
         elif escolha_leite == '3':
             break
+        else:
+            print('\033[1;31mOpção inválida!\033[m')
 
 def historico_movimentacao():
     print('\033[1;32m~'*100)
@@ -707,6 +715,7 @@ def relatorio_geral():
 
 def voltar():
     print('\033[1;31mVoltando ao menu anterior...\033[m')
+'''
 
 while True:
         
@@ -751,5 +760,5 @@ while True:
             relatorio_geral()
         elif op_adm == 16:
             voltar()
-
+'''
             
