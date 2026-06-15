@@ -75,11 +75,11 @@ def ler_data():
                 print("/", end="", flush=True)
     print()
     if len(numeros) != 8:
-        print("⚠ Data incompleta!")
+        print("\033[1;31m⚠ Data incompleta!\033[m")
         return numeros
     return f"{numeros[:2]}/{numeros[2:4]}/{numeros[4:]}"
 def ler_horario():
-    print("\033[1;31mHorário (HH:MM):\033[m ", end="", flush=True)
+    print("\033[1;35mHorário (HH:MM):\033[m ", end="", flush=True)
     numeros = ""
     while True:
         tecla = msvcrt.getwch()
@@ -95,7 +95,7 @@ def ler_horario():
             display = numeros
             if len(numeros) > 2:
                 display = numeros[:2] + ":" + numeros[2:]
-        print("\rHorário (HH:MM): " + display, end="", flush=True)
+        print("\r\033[1;35mHorário (HH:MM):\033[m " + display, end="", flush=True)
         print()
     if len(numeros) != 4:
         print("\033[1;31m⚠ Horário incompleto!\033[m")
