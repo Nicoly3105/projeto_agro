@@ -12,34 +12,26 @@ login_encontrado_adm = False
 
 def verificação_login():
     while True:
-            login = input('Digite o email: ').lower().strip()
-            try:
-                validate_email(login)
-            except EmailNotValidError:
-                print('\033[1;31mEmail inválido, tente novamente!\033[m')
-                continue
-            senha = maskpass.askpass(prompt='Digite a senha que você deseja usar: ', mask='*')
-            login_encontrado = False
-            login_encontrado_cliente = False
-            login_encontrado_adm = False
+        login = input('Digite o email: ').lower().strip()
+        try:
+            validate_email(login)
+        except EmailNotValidError:
+            print('Email inválido!')
+            continue
 
-            for i in login_cliente:
-                if login == i['Login'] and senha == i['Senha']:
-                    login_encontrado = True
-                    login_encontrado_cliente = True
-                    print('\033[1;34mLogin cliente encontrado com sucesso!\033[m')
-                    break
-            if login_encontrado == False:
-                for i in login_adm:
-                    if login == i['Login'] and senha == i['Senha']:
-                        login_encontrado = True
-                        login_encontrado_adm = True
-                        print('\033[1;34mLogin ADM encontrado com sucesso!\033[m')
-                        break
-            if login_encontrado == False:
-                print('\033[1;31mLogin não encontrado, tente novamente!\033[m')
-            else:
-                break  
+        senha = maskpass.askpass(prompt='Digite a senha: ', mask='*')
+
+        for i in login_cliente:
+            if login == i['Login'] and senha == i['Senha']:
+                print('Login cliente OK')
+                return "cliente"
+
+        for i in login_adm:
+            if login == i['Login'] and senha == i['Senha']:
+                print('Login ADM OK')
+                return "adm"
+
+        print('Login não encontrado')
 
 #cadas cliente
 def cadastro_cliente():
@@ -129,7 +121,11 @@ while True:
         print('[\033[1;33m4\033[m] SAIR')
         op = int(input('Digite a opção desejada: '))
         if op == 1:
-            verificação_login()
+            tipo = verificação_login()
+        if tipo == "cliente":
+            print("Entrar menu cliente")
+        elif tipo == "adm":
+            print("Entrar menu adm")
         elif op == 2:
             cadastro_cliente()
         elif op == 3:
